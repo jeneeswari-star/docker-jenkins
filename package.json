@@ -5,4 +5,7 @@
   "scripts": {
     "start": "node app.js"
   }
+  "scripts": {
+    "test": "test.js"
+}
 }
