@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/your-repo/hello-world.git'
+                git 'https://github.com/jeneeswari-star/docker-jenkins.git'
             }
         }
         stage('Build Docker Image') {
