@@ -1,27 +1,20 @@
-#!/usr/bin/env groovy
 pipeline {
-  agent any
-  stages {
-
-    stage('test') {
-      steps {
-        sh "docker container run --rm -w /app -v \$(pwd):/app node:10.17.0 bash -c 'npm i -D && npm run test && rm -rf node_modules/'"
-      }
+    agent any
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/your-repo/hello-world.git'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t hello-world-app .'
+            }
+        }
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker run -d -p 3000:3000 hello-world-app'
+            }
+        }
     }
-
-    stage('package') {
-      steps {
-        sh "chmod +x ./scripts/build.sh"
-        sh "./scripts/build.sh"
-      }
-    }
-
-    stage('deploy') {
-      steps {
-        sh "chmod +x ./scripts/deploy.sh"
-        sh "./scripts/deploy.sh"
-      }
-    }
-
-  }
 }
