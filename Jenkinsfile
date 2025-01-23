@@ -3,7 +3,17 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/jeneeswari-star/docker-jenkins.git'
+                git 'https://github.com/your-repo/hello-world.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                sh 'npm test'
             }
         }
         stage('Build Docker Image') {
